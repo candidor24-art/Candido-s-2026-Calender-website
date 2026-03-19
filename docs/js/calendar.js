@@ -1,10 +1,38 @@
-function getQueryParam(name) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name);
-}
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 function formatMonthName(monthIndex) {
-  return new Date(0, monthIndex).toLocaleString(navigator.language, { month: 'long' });
+  return MONTH_NAMES[monthIndex] || '';
+}
+
+function monthFileName(monthIndex) {
+  const names = [
+    'january',
+    'february',
+    'march',
+    'april',
+    'may',
+    'june',
+    'july',
+    'august',
+    'september',
+    'october',
+    'november',
+    'december',
+  ];
+  return `${names[monthIndex]}.html`;
 }
 
 function createCalendar(year, month) {
@@ -13,6 +41,7 @@ function createCalendar(year, month) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   const calendarBody = document.getElementById('calendarBody');
+  if (!calendarBody) return;
   calendarBody.innerHTML = '';
 
   let row;
@@ -64,44 +93,44 @@ function updateUI(year, month) {
   const monthYearEl = document.getElementById('monthYear');
   const monthTitleEl = document.getElementById('monthTitle');
 
-  monthYearEl.textContent = `${monthName} ${year}`;
-  monthTitleEl.textContent = `${monthName} ${year} Calendar`;
+  if (monthYearEl) {
+    monthYearEl.textContent = `${monthName} ${year}`;
+  }
+
+  if (monthTitleEl) {
+    monthTitleEl.textContent = `${monthName} ${year} Calendar`;
+  }
+
+  if (document.title) {
+    document.title = `${monthName} ${year} Calendar`;
+  }
 
   createCalendar(year, month);
-}
-
-function setUrlMonth(year, month) {
-  const url = new URL(window.location.href);
-  url.searchParams.set('m', String(month + 1));
-  url.searchParams.set('y', String(year));
-  window.history.replaceState(null, '', url);
-}
-
-function initCalendar() {
-  const now = new Date();
-  const monthParam = parseInt(getQueryParam('m'), 10);
-  const yearParam = parseInt(getQueryParam('y'), 10);
-
-  const month = Number.isFinite(monthParam) ? monthParam - 1 : now.getMonth();
-  const year = Number.isFinite(yearParam) ? yearParam : now.getFullYear();
-
-  updateUI(year, month);
-  setUrlMonth(year, month);
 
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
-  prevBtn.addEventListener('click', () => {
-    const prev = new Date(year, month - 1, 1);
-    updateUI(prev.getFullYear(), prev.getMonth());
-    setUrlMonth(prev.getFullYear(), prev.getMonth());
-  });
+  if (prevBtn) {
+    const prevMonth = month === 0 ? 11 : month - 1;
+    prevBtn.addEventListener('click', () => {
+      window.location.href = monthFileName(prevMonth);
+    });
+  }
 
-  nextBtn.addEventListener('click', () => {
-    const next = new Date(year, month + 1, 1);
-    updateUI(next.getFullYear(), next.getMonth());
-    setUrlMonth(next.getFullYear(), next.getMonth());
-  });
+  if (nextBtn) {
+    const nextMonth = month === 11 ? 0 : month + 1;
+    nextBtn.addEventListener('click', () => {
+      window.location.href = monthFileName(nextMonth);
+    });
+  }
+}
+
+function initCalendar() {
+  const now = new Date();
+  const month = Number.isFinite(window.CALENDAR_MONTH) ? window.CALENDAR_MONTH - 1 : now.getMonth();
+  const year = Number.isFinite(window.CALENDAR_YEAR) ? window.CALENDAR_YEAR : now.getFullYear();
+
+  updateUI(year, month);
 }
 
 if (document.readyState === 'loading') {

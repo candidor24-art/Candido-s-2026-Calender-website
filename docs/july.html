@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Candido's 2026 Calendar</title>
+  <title>July 2026 | Calendar</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <header class="site-header">
     <h1>Candido's 2026 Calendar</h1>
-    <p>Use the month list on the left to open the calendar for any month.</p>
+    <p>Use the menu to view a calendar for any month.</p>
   </header>
 
   <div class="layout">
@@ -23,7 +23,7 @@
           <li><a href="april.html">April</a></li>
           <li><a href="may.html">May</a></li>
           <li><a href="june.html">June</a></li>
-          <li><a href="july.html">July</a></li>
+          <li><a class="active" href="july.html">July</a></li>
           <li><a href="august.html">August</a></li>
           <li><a href="september.html">September</a></li>
           <li><a href="october.html">October</a></li>
@@ -35,11 +35,35 @@
 
     <main class="main">
       <header class="page-header">
-        <h2 class="page-title">Pick any month</h2>
+        <h2 id="monthTitle" class="page-title">July 2026</h2>
       </header>
 
       <section class="calendar-wrapper">
-        <p class="hint">Select a month on the left to see its calendar.</p>
+        <div class="calendar-header">
+          <a class="back-link" href="index.html">← Back to overview</a>
+          <div id="monthYear" class="month-year"></div>
+          <div>
+            <button id="prevBtn" aria-label="Previous month">◀</button>
+            <button id="nextBtn" aria-label="Next month">▶</button>
+          </div>
+        </div>
+
+        <table class="calendar" aria-label="Monthly calendar">
+          <thead>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody id="calendarBody"></tbody>
+        </table>
+
+        <p class="hint">Tip: Use the arrows or the sidebar to switch months.</p>
       </section>
 
       <footer class="page-footer">
@@ -47,5 +71,11 @@
       </footer>
     </main>
   </div>
+
+  <script>
+    window.CALENDAR_MONTH = 7;
+    window.CALENDAR_YEAR = 2026;
+  </script>
+  <script src="js/calendar.js"></script>
 </body>
 </html>

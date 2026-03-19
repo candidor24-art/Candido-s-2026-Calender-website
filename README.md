@@ -1,16 +1,32 @@
 # Calendar Website
 
-This is a simple static website that shows a calendar for each month of the year.
+This is a simple static website that shows a calendar for each month of the year. The site includes **12 separate pages** (one per month), and each page includes the same sidebar list of month links.
 
 ## How it works
 
-- `index.html` contains 12 links (one per month).
-- Clicking a month opens `month.html` with the selected month loaded via query parameters.
-- `js/calendar.js` renders a basic calendar grid for the selected month.
+- `docs/index.html` is the home page and shows the month list.
+- Each month has its own page under `docs/` (e.g., `docs/january.html`).
+- `docs/js/calendar.js` renders a calendar table for the selected month.
 
 ## Run
 
-1. Open `index.html` in your browser.
-2. Click any month to view its calendar.
+### Option A (recommended): run a local server
+From the project folder:
 
-> Tip: If you want to test navigation between months, use the arrows inside the month view.
+```bash
+python3 -m http.server 8000
+```
+
+Then open:
+
+```
+http://localhost:8000/docs/index.html
+```
+
+### Option B: open directly
+Open `docs/index.html` in your browser.
+
+## Sources consulted
+
+- MDN Web Docs (HTML, CSS, JavaScript)
+- GitHub Pages documentation

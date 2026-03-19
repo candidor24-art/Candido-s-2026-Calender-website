@@ -181,3 +181,90 @@ button:focus-visible {
 .back-link:focus-visible {
   text-decoration: underline;
 }
+
+/* Layout for month pages with sidebar */
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: min(96vw, 1100px);
+  margin: 0 auto;
+  gap: 1.5rem;
+  padding: 0 1.25rem 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 2rem 2.5rem;
+  }
+}
+
+.sidebar {
+  flex: 0 0 240px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.sidebar h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.4rem;
+}
+
+.month-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.month-list li + li {
+  margin-top: 0.5rem;
+}
+
+.month-list a {
+  display: block;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.month-list a:hover,
+.month-list a:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.month-list a.active {
+  background: rgba(228, 109, 50, 0.4);
+  border-color: rgba(228, 109, 50, 0.7);
+  color: white;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.page-header {
+  margin-bottom: 1rem;
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.4vw, 2.4rem);
+}
+
+.page-footer {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
