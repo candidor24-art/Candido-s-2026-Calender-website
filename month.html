@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Month Calendar</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 id="monthTitle">Month Calendar</h1>
+    <p><a class="back-link" href="index.html">← Back to months</a></p>
+  </header>
+
+  <main>
+    <section class="calendar-wrapper">
+      <div class="calendar-header">
+        <button id="prevBtn" aria-label="Previous month">◀</button>
+        <div id="monthYear" class="month-year"></div>
+        <button id="nextBtn" aria-label="Next month">▶</button>
+      </div>
+
+      <table class="calendar" aria-label="Monthly calendar">
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody id="calendarBody"></tbody>
+      </table>
+
+      <p class="hint">Tip: Use the arrows or your browser's back button to navigate months.</p>
+    </section>
+  </main>
+
+  <script src="js/calendar.js"></script>
+</body>
+</html>
